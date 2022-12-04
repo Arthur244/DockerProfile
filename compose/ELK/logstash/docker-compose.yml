@@ -1,0 +1,11 @@
+version: "2.0"
+services:
+  logstash:
+    image: logstash:7.17.7
+    container_name: logstash
+    privileged: true
+    environment:
+      XPACK_MONITORING_ELASTICSEARCH_HOSTS: http://127.0.0.1:9200
+    volumes:
+      - /Users/Arthur/dockerData/conf/logstash/config:/usr/share/logstash/pipeline
+    network_mode: host
