@@ -1,0 +1,41 @@
+version: '3'
+services:
+  namesrv:
+    image: apacherocketmq/rocketmq:4.9.2-alpine
+    container_name: rmqnamesrv
+    ports:
+      - 9876:9876
+    volumes:
+      - ./data/namesrv/logs:/home/rocketmq/logs
+    command: sh mqnamesrv
+    restart: always
+  broker:
+    image: apacherocketmq/rocketmq:4.9.2-alpine
+    container_name: rmqbroker
+    links:
+      - namesrv
+    ports:
+      - 10909:10909
+      - 10911:10911
+      - 10912:10912
+    environment:
+      - NAMESRV_ADDR=namesrv:9876
+    volumes:
+      - ./data/broker/logs:/home/rocketmq/logs
+      - ./data/broker/store:/home/rocketmq/store
+      - ./data/broker/conf/broker.conf:/home/rocketmq/rocketmq-4.9.2/conf/broker.conf
+      - ./data/broker/runbroker.sh:/home/rocketmq/rocketmq-4.9.2/bin/runbroker.sh
+    command: sh mqbroker -c /home/rocketmq/rocketmq-4.9.2/conf/broker.conf
+    depends_on:
+      - namesrv
+    restart: always
+  rmqconsole:
+    image: candice0630/rocketmq-console-ng:2.0
+    container_name: rmqconsole
+    ports:
+      - 9001:8080
+    environment:
+      JAVA_OPTS: -Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
+    depends_on:
+      - namesrv
+    restart: always
