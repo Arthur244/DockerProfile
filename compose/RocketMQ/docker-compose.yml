@@ -6,7 +6,7 @@ services:
     ports:
       - 9876:9876
     volumes:
-      - ./data/namesrv/logs:/home/rocketmq/logs
+      - /Users/Arthur/dockerData/data/namesrv/logs:/home/rocketmq/logs
     command: sh mqnamesrv
   broker:
     image: apache/rocketmq
@@ -20,19 +20,10 @@ services:
     environment:
       - NAMESRV_ADDR=namesrv:9876
     volumes:
-      - ./data/broker/logs:/home/rocketmq/logs
-      - ./data/broker/store:/home/rocketmq/store
-      - ./data/broker/conf/broker.conf:/home/rocketmq/rocketmq-4.9.2/conf/broker.conf
-      - ./data/broker/runbroker.sh:/home/rocketmq/rocketmq-4.9.2/bin/runbroker.sh
+      - /Users/Arthur/dockerData/data/broker/logs:/home/rocketmq/logs
+      - /Users/Arthur/dockerData/data/broker/store:/home/rocketmq/store
+      - /Users/Arthur/dockerData/data/broker/conf/broker.conf:/home/rocketmq/rocketmq-4.9.2/conf/broker.conf
+      - /Users/Arthur/dockerData/data/broker/runbroker.sh:/home/rocketmq/rocketmq-4.9.2/bin/runbroker.sh
     command: sh mqbroker -c /home/rocketmq/rocketmq-4.9.2/conf/broker.conf
-    depends_on:
-      - namesrv
-  rmqconsole:
-    image: candice0630/rocketmq-console-ng:2.0
-    container_name: rmqconsole
-    ports:
-      - 9001:8080
-    environment:
-      JAVA_OPTS: -Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
     depends_on:
       - namesrv
