@@ -27,3 +27,13 @@ services:
     command: sh mqbroker -c /home/rocketmq/rocketmq-4.9.2/conf/broker.conf
     depends_on:
       - namesrv
+  rmqconsole:
+    image: candice0630/rocketmq-console-ng:2.0
+    container_name: rmqconsole
+    ports:
+      - 9001:8080
+    environment:
+      JAVA_OPTS: -Drocketmq.namesrv.addr=namesrv:9876
+        -Dcom.rocketmq.sendMessageWithVIPChannel=false
+    depends_on:
+      - namesrv
