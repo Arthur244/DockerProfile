@@ -28,7 +28,7 @@ services:
     depends_on:
       - namesrv
   rmqconsole:
-    image: candice0630/rocketmq-console-ng:2.0
+    image: gguilin/rocketmq-console-ng:2.0.0
     container_name: rmqconsole
     ports:
       - 9001:8080
