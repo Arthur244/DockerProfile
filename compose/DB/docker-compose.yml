@@ -1,0 +1,16 @@
+version: '1'
+services: 
+  redis-local: 
+    image: redis
+    container_name: redis-composeLocal
+    ports:
+      - 6379:6379
+  mysql-local: 
+    image: mysql
+    container_name: mysql-composeLocal
+    ports:
+      - 33066:3306
+    volumes:
+      - /Users/Arthur/dockerData/data/MySql/mysql-local:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=qwerwasd
