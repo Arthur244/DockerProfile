@@ -1,0 +1,15 @@
+version: '1'
+services:
+  elasticsearch-local: 
+    image: elasticsearch:7.17.7
+    container_name: elasticsearch-composeLocal
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms84m -Xmx512m
+    volumes:
+      - /Users/Arthur/dockerData/conf/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /Users/Arthur/dockerData/data/elasticsearch:/usr/share/elasticsearch/data
+      - /Users/Arthur/dockerData/plugins/elasticsearch:/usr/share/elasticsearch/plugins
