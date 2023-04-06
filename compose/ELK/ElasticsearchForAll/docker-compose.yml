@@ -1,6 +1,6 @@
 version: '1'
 services:
-  elasticsearch-local: 
+  elasticsearch: 
     image: elasticsearch:7.17.7
     container_name: elasticsearch-composeLocal
     ports:
@@ -13,7 +13,7 @@ services:
       - /Users/Arthur/dockerData/conf/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - /Users/Arthur/dockerData/data/elasticsearch:/usr/share/elasticsearch/data
       - /Users/Arthur/dockerData/plugins/elasticsearch:/usr/share/elasticsearch/plugins
-  es-kibana: 
+  kibana: 
     image: kibana:7.17.7
     container_name: es-kibana-composeLocal
     volumes:
@@ -21,6 +21,6 @@ services:
     ports:
       - 5601:5601
     depends_on:
-      - elasticsearch-local
+      - elasticsearch
     links:
-      - elasticsearch-local
+      - elasticsearch
