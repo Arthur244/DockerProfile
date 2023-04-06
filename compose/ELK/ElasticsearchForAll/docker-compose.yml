@@ -24,3 +24,12 @@ services:
       - elasticsearch
     links:
       - elasticsearch
+  head: 
+    image: mobz/elasticsearch-head:5
+    container_name: es-admin-composeLocal
+    ports:
+      - 9100:9100
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
