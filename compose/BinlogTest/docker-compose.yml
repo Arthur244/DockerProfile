@@ -1,0 +1,25 @@
+version: '1'
+services:
+  mysql-local: 
+    image: mysql
+    container_name: mysql-composeLocalBinlog
+    ports:
+      - 33067:3306
+    volumes:
+      - /Users/Arthur/dockerData/data/MySql/mysql-local-binlog:/var/lib/mysql
+      # - /Users/Arthur/dockerData/conf/MySql/mysql-local/mysql/:/etc/mysql/
+      # - /Users/Arthur/dockerData/conf/MySql/mysql-local/mysql-files/:/var/lib/mysql-files/
+    environment:
+      - MYSQL_ROOT_PASSWORD=qwerwasd
+
+  mysql-slave-local: 
+    image: mysql
+    container_name: mysql-composeLocalBinlogSlave
+    ports:
+      - 33068:3306
+    volumes:
+      - /Users/Arthur/dockerData/data/MySql/mysql-localSlave-binlog:/var/lib/mysql
+      # - /Users/Arthur/dockerData/conf/MySql/mysql-local/mysql/:/etc/mysql/
+      # - /Users/Arthur/dockerData/conf/MySql/mysql-local/mysql-files/:/var/lib/mysql-files/
+    environment:
+      - MYSQL_ROOT_PASSWORD=qwerwasd
