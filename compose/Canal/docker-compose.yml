@@ -1,0 +1,34 @@
+version: '1'
+services:
+  canal-server:
+    image: canal/canal-server
+    container_name: canal-serverLocal
+    volumes:
+      - /Users/Arthur/dockerData/conf/canal/canal-server/instance.properties:/home/admin/canal-server/conf/example/instance.properties
+      - /Users/Arthur/dockerData/conf/canal/canal-server/canal.properties:/home/admin/canal-server/conf/canal.properties
+    ports:
+      - 11111:11111
+      - 11110:11110
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    # environment:
+    #   - canal.admin.manager=192.168.5.7:8089
+    #   - canal.admin.port=11110
+    #   - canal.admin.user=admin
+    #   - canal.admin.passwd=123456
+    #   - canal.instance.master.address=192.168.31.166:33066
+    #   - canal.instance.dbUsername=canal
+    #   - canal.instance.dbPassword=123456
+  canal-admin:
+    image: canal/canal-admin
+    container_name: canal-adminLocal
+    ports:
+      - 8089:8089
+    environment:
+      - server.port=8089
+      #- canal.adminUser=admin
+      #- canal.adminPassword=qwerwasd
+      - spring.datasource.address=host.docker.internal:33066
+      - spring.datasource.database=canal_manager
+      - spring.datasource.username=root
+      - spring.datasource.password=qwerwasd

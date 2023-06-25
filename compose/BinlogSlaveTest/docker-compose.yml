@@ -1,0 +1,11 @@
+version: '1'
+services:
+  mysql-binlog-slave:
+    image: mysql
+    container_name: mysql-binlog-slave
+    ports:
+      - 33069:3306
+    volumes:
+      - /Users/Arthur/dockerData/data/MySql/mysql-binlog-slave:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=qwerwasd
