@@ -1,0 +1,11 @@
+docker run \
+       -d \
+       --restart=always \
+       --name=cups \
+       --net=host \
+       -v /var/run/dbus:/var/run/dbus \
+       --device /dev/bus \
+       --device /dev/usb \
+       -e CUPSADMIN="admin" \
+       -e CUPSPASSWORD="password" \
+       tigerj/cups-airprint
