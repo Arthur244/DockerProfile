@@ -7,7 +7,7 @@ DEVICE=/dev/usb/lp0
 LOGFILE=/tmp/hp-log
 #PRINTSERV=/etc/rc.d/S50p910nd
 
-echo "$PRODUCT" >> $LOGFILE
+#echo "$PRODUCT" >> $LOGFILE
 
 if [ "$PRODUCT" = "3f0/c17/100" ]; then
     case "$ACTION" in
