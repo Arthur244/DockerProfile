@@ -25,6 +25,7 @@ if [ "$PRODUCT" = "3f0/c17/100" ]; then
             echo "`date`: Done" >> $LOGFILE
             ;;
         remove)
+            docker stop cups
             echo "`date`: HP LaserJet 1010 removed" >> $LOGFILE
             echo "`date`: Done" >> $LOGFILE
             ;;
