@@ -7,5 +7,5 @@ docker run \
        --device /dev/bus \
        --device /dev/usb \
        -e CUPSADMIN="admin" \
-       -e CUPSPASSWORD="password" \
+       -e CUPSPASSWORD="admin" \
        tigerj/cups-airprint
