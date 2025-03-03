@@ -5,8 +5,8 @@ set -e
 #FIRMWARE=/usr/lib/sihpP1007.dl
 DEVICE=/dev/usb/lp0
 LOGFILE=/tmp/hp-log
-PRINTSERV=/etc/rc.d/S50p910nd
-
+#PRINTSERV=/etc/rc.d/S50p910nd
+echo "`date`: HP LaserJet 1010 insert `$DEVICE``date`" >> $LOGFILE
 if [ "$PRODUCT" = "3f0/4817/100" ]; then
     case "$ACTION" in
         add)
